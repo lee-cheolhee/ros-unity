@@ -1,4 +1,7 @@
-[submodule "src/3rdParty"]
-	path = src/3rdParty
+[submodule "src/3rdParty/ROS-TCP-Endpoint"]
+	path = src/3rdParty/ROS-TCP-Endpoint
 	url = https://github.com/Unity-Technologies/ROS-TCP-Endpoint.git
 	branch = main-ros2
+[submodule "src/3rdParty/Unity-Robotics-Hub"]
+	path = src/3rdParty/Unity-Robotics-Hub
+	url = https://github.com/lee-cheolhee/Unity-Robotics-Hub.git
