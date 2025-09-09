@@ -1,0 +1,63 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "colcon: build",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "source /opt/ros/humble/setup.bash && colcon build --parallel-workers 4 --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Release"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "colcon: build packages-select",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "source /opt/ros/humble/setup.bash && colcon build --parallel-workers 4 --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Release --packages-up-to ${input:pkgName}"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "colcon: clean",
+            "type": "shell",
+            "command": "rm -rf build install log",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "colcon: clean packages-select",
+            "type": "shell",
+            "command": "rm -rf build/${input:pkgName} install/${input:pkgName} log/latest_build/${input:pkgName}",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "colcon: test",
+            "type": "shell",
+            "command": "colcon test && colcon test-result"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "pkgName",
+            "type": "promptString",
+            "description": "Enter the package name to build"
+        }
+    ]
+}
