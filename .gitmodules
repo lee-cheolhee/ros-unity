@@ -1,0 +1,4 @@
+[submodule "src/3rdParty"]
+	path = src/3rdParty
+	url = https://github.com/Unity-Technologies/ROS-TCP-Endpoint.git
+	branch = main-ros2
